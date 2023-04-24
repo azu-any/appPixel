@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -16,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Menu extends JPanel implements ActionListener  {
+public class Menu extends JPanel {
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -27,8 +25,8 @@ public class Menu extends JPanel implements ActionListener  {
 	public Menu(){
 		components();
 		
-		setSize(400, 400);							// tamaño de la ventana
-		setLayout(null);								// elimina plantillas
+		setSize(400, 400);
+		setLayout(null);
 		setBackground(new Color(54, 54, 54));
 		setVisible(true);				
 	}
@@ -40,11 +38,6 @@ public class Menu extends JPanel implements ActionListener  {
 		openBtn		= new JButton("Open");
 		fileName 	= "img";
 		type 		= "jpg";
-		
-		JFileChooser fc = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(
-		        "PNG, JPG & GIF Images", "png", "jpg", "gif");
-		fc.setFileFilter(filter);
 		
 		saveBtn.setBounds(20, 20, 120, 30);
 		saveBtn.setBackground(new Color(237, 238, 240));
@@ -95,14 +88,21 @@ public class Menu extends JPanel implements ActionListener  {
 		openBtn.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
+		    	
+		    	JFileChooser fc = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				        "PNG, JPG & GIF Images", "png", "jpg", "gif");
+				fc.setFileFilter(filter);
+		    	
 		    	int returnVal = fc.showOpenDialog(getParent());
 		    	
 		    	if(returnVal == JFileChooser.APPROVE_OPTION) {
-		    		String name = fc.getSelectedFile().getName();
+		    		File file = fc.getSelectedFile();//.getName();
+		    		String name = file.getName();
 		    		
 		    		Image img = null;
 					try {
-						img = ImageIO.read(new File(name));
+						img = ImageIO.read(file);
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
@@ -110,9 +110,7 @@ public class Menu extends JPanel implements ActionListener  {
 		    		
 		    		JOptionPane.showMessageDialog(null, "You opened " + name, "Open image", JOptionPane.PLAIN_MESSAGE);
 		    		
-		    		String[] names = name.split("\\.");
-		    		System.out.println(name);	
-		    		System.out.println(Arrays.toString(names));		    		
+		    		String[] names = name.split("\\.");	    		
 		    		fileName = names[0];
 		    		type = names[1];
 		    	}
@@ -129,7 +127,7 @@ public class Menu extends JPanel implements ActionListener  {
     	JOptionPane.showMessageDialog(null, "Image has been saved as \"" + fileName + "." + type +"\"", "Saved", JOptionPane.PLAIN_MESSAGE);
 	}
 
-	private String name(){		
+	private String name() {		
     	return JOptionPane.showInputDialog(null, "Name:", "Image name", JOptionPane.PLAIN_MESSAGE);
 	}
 	
@@ -138,7 +136,4 @@ public class Menu extends JPanel implements ActionListener  {
 		
 		return (String) JOptionPane.showInputDialog(null, "Select format:", "Image format", JOptionPane.PLAIN_MESSAGE, null, extensions, extensions[0]);
 	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {}
 }

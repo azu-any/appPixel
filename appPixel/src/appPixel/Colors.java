@@ -15,14 +15,13 @@ public class Colors extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private static JButton red, green, blue, yellow, black, white, col1, col2, col3, col4, col5, col6;
 	private static Color currentColor;
-	
 	private List<Color> colors;
 	
 	public Colors() {
 		components();
 		
-		setSize(400, 200);							// tamaño de la ventana
-		setLayout(null);								// elimina plantillas
+		setSize(400, 200);
+		setLayout(null);
 		setBackground(new Color(54, 54, 54));
 		setVisible(true);				
 	}
