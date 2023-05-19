@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.io.File;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -42,8 +44,12 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	
 	public static void setImage(Image image) {
 		img = (BufferedImage) image;
+		try {
+			img = resizeImage(img, 800, 800);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		gfx = img.createGraphics();
-		//gfx.drawImage(img, 0, 0, 800, 800, null);
 		drawSquareGrid(40, Color.black);
 	}
 	
@@ -122,5 +128,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		repaint();
 	}
 	
+	static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException {
+	    Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_DEFAULT);
+	    BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
+	    outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
+	    return outputImage;
+	}
 }
 

@@ -89,15 +89,15 @@ public class Menu extends JPanel {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		    	
-		    	JFileChooser fc = new JFileChooser();
+		    	JFileChooser fc = new JFileChooser(".");
+		    	
 				FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				        "PNG, JPG & GIF Images", "png", "jpg", "gif");
 				fc.setFileFilter(filter);
-		    	
 		    	int returnVal = fc.showOpenDialog(getParent());
 		    	
 		    	if(returnVal == JFileChooser.APPROVE_OPTION) {
-		    		File file = fc.getSelectedFile();//.getName();
+		    		File file = fc.getSelectedFile();
 		    		String name = file.getName();
 		    		
 		    		Image img = null;
