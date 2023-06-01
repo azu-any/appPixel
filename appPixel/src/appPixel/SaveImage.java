@@ -82,7 +82,7 @@ public class SaveImage extends JDialog implements ActionListener{
 				if(grid.isSelected()) {
 					Canvas.addBg();
 				}
-				if(grid.isSelected()) {
+				if(bg.isSelected()) {
 					Canvas.addGrid();
 				}
 				Canvas.saveImage(dir + name.getText(), type.getSelectedItem().toString());
