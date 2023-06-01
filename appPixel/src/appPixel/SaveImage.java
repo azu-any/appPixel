@@ -79,10 +79,10 @@ public class SaveImage extends JDialog implements ActionListener{
 				JOptionPane.showMessageDialog(null, "You must enter a name for the image", "Missing name", JOptionPane.PLAIN_MESSAGE);
 			}
 			else {
-				if(grid.isSelected()) {
+				if(bg.isSelected()) {
 					Canvas.addBg();
 				}
-				if(bg.isSelected()) {
+				if(grid.isSelected()) {
 					Canvas.addGrid();
 				}
 				Canvas.saveImage(dir + name.getText(), type.getSelectedItem().toString());
