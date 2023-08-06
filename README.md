@@ -13,3 +13,6 @@ The latest version has the following features:
 - 40x40 grid
 - Open an image (png, jpg and gif)
 - Save and Save as buttons
+
+Screenshots of the app:
+![Screenshot](screenshot.png)
