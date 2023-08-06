@@ -15,6 +15,6 @@ The latest version has the following features:
 - Save and Save as buttons
 
 Screenshots of the app:
-![Screenshot 1](screen-1.png)
-![Screenshot 2](screen-2.png)
-![Screenshot 3](screen-3.png)
+![Screenshot 1](screenshots/screen-1.png)
+![Screenshot 2](screenshots/screen-2.png)
+![Screenshot 3](screenshots/screen-3.png)
